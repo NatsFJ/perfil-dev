@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Meu Perfil</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      transition: background 0.3s;
+    }
+
+    body.dark { background: #1a1a1a; }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 32px;
+      width: 320px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      position: relative;
+      transition: background 0.3s;
+    }
+
+    body.dark .card {
+      background: #2a2a2a;
+      color: white;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+
+    .btn-tema {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      padding: 4px 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    body.dark .btn-tema { border-color: #555; }
+
+    .visitas {
+      position: absolute;
+      top: 18px;
+      left: 16px;
+      font-size: 11px;
+      color: #999;
+    }
+
+    body.dark .visitas { color: #777; }
+
+    .foto {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: #4f46e5;
+      color: white;
+      font-size: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 16px auto 16px;
+    }
+
+    .dica-editar {
+      font-size: 11px;
+      color: #aaa;
+      margin-bottom: 6px;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin: 0 0 4px;
+      outline: none;
+    }
+
+    body.dark h1 { color: white; }
+    h1:focus { border-bottom: 2px solid #4f46e5; }
+
+    .cargo {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 8px;
+      outline: none;
+    }
+
+    body.dark .cargo { color: #bbb; }
+    .cargo:focus { border-bottom: 2px solid #4f46e5; }
+
+    .bio {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 20px;
+      outline: none;
+      line-height: 1.5;
+    }
+
+    body.dark .bio { color: #aaa; }
+    .bio:focus { border-bottom: 2px solid #4f46e5; }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .skill {
+      background: #f0effe;
+      color: #4f46e5;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+    }
+
+    body.dark .skill { background: #3a3a5a; color: #a5b4fc; }
+
+    .botoes {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    button {
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-contato { background: #4f46e5; color: white; }
+    .btn-contato:hover { background: #3730a3; }
+
+    .btn-copiar { background: #f0effe; color: #4f46e5; }
+    .btn-copiar:hover { background: #e0d9fc; }
+
+    body.dark .btn-copiar { background: #3a3a5a; color: #a5b4fc; }
+
+    .formulario {
+      display: none;
+      margin-top: 16px;
+      text-align: left;
+    }
+
+    .formulario.aberto { display: block; }
+
+    .formulario input,
+    .formulario textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 13px;
+      margin-bottom: 8px;
+      font-family: Arial, sans-serif;
+      background: white;
+      color: #111;
+    }
+
+    body.dark .formulario input,
+    body.dark .formulario textarea {
+      background: #1a1a1a;
+      border-color: #444;
+      color: white;
+    }
+
+    .formulario textarea { resize: none; height: 80px; }
+
+    .btn-enviar { width: 100%; background: #4f46e5; color: white; }
+    .btn-enviar:hover { background: #3730a3; }
+
+    .toast {
+      display: none;
+      margin-top: 12px;
+      color: white;
+      padding: 8px;
+      border-radius: 8px;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <button class="btn-tema" onclick="alternarTema()">🌙</button>
+    <div class="visitas">👁 <span id="contador">0</span> visitas</div>
+
+    <div class="foto">👤</div>
+
+    <p class="dica-editar">✏️ clique no nome ou cargo para editar</p>
+    <h1 contenteditable="true" spellcheck="false">João Silva</h1>
+    <p class="cargo" contenteditable="true" spellcheck="false">Desenvolvedor Front-end</p>
+    <p class="bio" contenteditable="true" spellcheck="false">Apaixonado por criar interfaces bonitas e funcionais para a web.</p>
+
+    <div class="skills">
+      <span class="skill">HTML</span>
+      <span class="skill">CSS</span>
+      <span class="skill">JavaScript</span>
+    </div>
+
+    <div class="botoes">
+      <button class="btn-contato" onclick="abrirFormulario()">✉️ Entrar em contato</button>
+      <button class="btn-copiar" onclick="copiarEmail()">📋 Copiar e-mail</button>
+    </div>
+
+    <div class="formulario" id="formulario">
+      <input type="text" id="nome" placeholder="Seu nome">
+      <input type="email" id="email" placeholder="Seu e-mail">
+      <textarea id="mensagem" placeholder="Sua mensagem..."></textarea>
+      <button class="btn-enviar" onclick="enviarMensagem()">Enviar mensagem</button>
+    </div>
+
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <script>
+    let visitas = parseInt(localStorage.getItem('visitas') || 0) + 1;
+    localStorage.setItem('visitas', visitas);
+    document.getElementById('contador').textContent = visitas;
+
+    function alternarTema() {
+      document.body.classList.toggle('dark');
+      document.querySelector('.btn-tema').textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    }
+
+    function abrirFormulario() {
+      document.getElementById('formulario').classList.toggle('aberto');
+    }
+
+    function enviarMensagem() {
+      const nome = document.getElementById('nome').value.trim();
+      const mensagem = document.getElementById('mensagem').value.trim();
+      if (!nome || !mensagem) {
+        mostrarToast('Preencha todos os campos!', '#ef4444');
+        return;
+      }
+      mostrarToast('Mensagem enviada! Obrigado, ' + nome + ' 👋', '#22c55e');
+      document.getElementById('formulario').classList.remove('aberto');
+      document.getElementById('nome').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('mensagem').value = '';
+    }
+
+    function copiarEmail() {
+      navigator.clipboard.writeText('joao@email.com').then(() => {
+        mostrarToast('📋 E-mail copiado!', '#4f46e5');
+      });
+    }
+
+    function mostrarToast(msg, cor) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.style.background = cor;
+      t.style.display = 'block';
+      setTimeout(() => { t.style.display = 'none'; }, 3000);
+    }
+  </script>
+</body>
+</html>

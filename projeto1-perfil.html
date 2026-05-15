@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Meu Perfil</title>
+  <style>
+    body {
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 32px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    }
+
+    .foto {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: #4f46e5;
+      color: white;
+      font-size: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin: 0 0 4px;
+      color: #111;
+    }
+
+    .cargo {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .skill {
+      background: #f0effe;
+      color: #4f46e5;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+    }
+
+    button {
+      background: #4f46e5;
+      color: white;
+      border: none;
+      padding: 10px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #3730a3;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="foto">👤</div>
+    <h1>João Silva</h1>
+    <p class="cargo">Desenvolvedor Front-end</p>
+
+    <div class="skills">
+      <span class="skill">HTML</span>
+      <span class="skill">CSS</span>
+      <span class="skill">JavaScript</span>
+    </div>
+
+    <button onclick="alert('Olá! Entre em contato: joao@email.com')">
+      Entrar em contato
+    </button>
+  </div>
+</body>
+</html>
